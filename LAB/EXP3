@@ -1,0 +1,16 @@
+policy = input("Enter security policy document: ").lower()
+
+elements = ["scope", "roles", "responsibilities",
+            "enforcement", "review", "approval"]
+
+print("\nMissing Governance Elements:")
+
+found = False
+
+for element in elements:
+    if element not in policy:
+        print(element)
+        found = True
+
+if not found:
+    print("All elements are present.")
