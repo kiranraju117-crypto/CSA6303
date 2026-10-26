@@ -1,0 +1,10 @@
+text = input("Enter report description and audience: ").lower()
+
+if "management" in text or "business risk" in text:
+    print("Strategic")
+elif "attack techniques" in text or "threat actor" in text:
+    print("Tactical")
+elif "malware" in text or "ip address" in text:
+    print("Operational")
+else:
+    print("Unknown")
