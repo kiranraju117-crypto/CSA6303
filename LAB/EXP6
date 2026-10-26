@@ -1,0 +1,8 @@
+url = input("Enter URL: ").lower()
+
+if "login" in url or "verify" in url or "free" in url:
+    print("Suspicious URL")
+elif "@" in url or "192.168." in url:
+    print("Suspicious URL")
+else:
+    print("URL looks safe")
