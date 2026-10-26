@@ -1,0 +1,41 @@
+# Threat Intelligence Application Area Identifier
+
+def identify_area(scenario):
+    scenario = scenario.lower()
+
+    if any(word in scenario for word in
+           ["bank", "banking", "credit card", "transaction", "payment", "fraud"]):
+        return "Banking Fraud Prevention"
+
+    elif any(word in scenario for word in
+             ["hospital", "healthcare", "patient", "medical", "health data"]):
+        return "Healthcare Data Protection"
+
+    elif any(word in scenario for word in
+             ["online shopping", "e-commerce", "ecommerce", "customer order", "online store"]):
+        return "E-Commerce Fraud Prevention"
+
+    elif any(word in scenario for word in
+             ["school", "college", "university", "student", "education"]):
+        return "Education Data Protection"
+
+    elif any(word in scenario for word in
+             ["government", "public service", "citizen", "government data"]):
+        return "Government Cybersecurity"
+
+    elif any(word in scenario for word in
+             ["company", "employee", "corporate", "business network"]):
+        return "Corporate Threat Monitoring"
+
+    else:
+        return "General Cyber Threat Intelligence"
+
+
+# Read business scenario
+scenario = input("Enter the business scenario: ")
+
+# Identify application area
+result = identify_area(scenario)
+
+print("\nBusiness Scenario:", scenario)
+print("Threat Intelligence Application Area:", result)
