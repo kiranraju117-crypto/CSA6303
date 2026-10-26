@@ -1,0 +1,16 @@
+message = input("Enter the message: ")
+key = 5
+
+# Encrypt the message
+encrypted = ""
+for ch in message:
+    encrypted += chr(ord(ch) ^ key)
+
+print("Encrypted data:", encrypted)
+
+# Decrypt using the shared key
+decrypted = ""
+for ch in encrypted:
+    decrypted += chr(ord(ch) ^ key)
+
+print("Decrypted data:", decrypted)
