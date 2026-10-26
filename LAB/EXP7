@@ -1,0 +1,15 @@
+logs = [
+    "INFO User login",
+    "ERROR Database failed",
+    "INFO User logout"
+]
+
+print("Parsed and Indexed Logs:")
+
+for log in logs:
+    print(log)
+
+print("\nLog Summary:")
+for level in ["INFO", "ERROR"]:
+    count = sum(level in log for log in logs)
+    print(level, ":", count)
