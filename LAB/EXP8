@@ -1,0 +1,8 @@
+def check_access(source, destination):
+    if source == "Low" and destination == "Sensitive":
+        print("Access Blocked")
+    else:
+        print("Access Allowed")
+
+check_access("Low", "Public")
+check_access("Low", "Sensitive")
