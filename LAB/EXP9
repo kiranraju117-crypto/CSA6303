@@ -1,0 +1,16 @@
+activity = input("Enter activity: ").lower()
+
+if "plan" in activity:
+    print("Direction")
+elif "collect" in activity:
+    print("Collection")
+elif "clean" in activity:
+    print("Processing")
+elif "analyze" in activity:
+    print("Analysis")
+elif "share" in activity:
+    print("Dissemination")
+elif "feedback" in activity:
+    print("Feedback")
+else:
+    print("Unknown Stage")
