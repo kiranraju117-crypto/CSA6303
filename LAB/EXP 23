@@ -1,0 +1,38 @@
+# Known trusted IP addresses
+whitelist = ["192.168.1.10"]
+
+# Suspicious traffic signatures
+signatures = [
+    "SQL Injection",
+    "Malware",
+    "Port Scanning",
+    "Brute Force"
+]
+
+traffic = [
+    {"ip": "192.168.1.10", "data": "SQL Injection"},
+    {"ip": "10.0.0.5", "data": "Malware"},
+    {"ip": "10.0.0.8", "data": "Normal Traffic"},
+    {"ip": "10.0.0.9", "data": "Port Scanning"}
+]
+
+print("Intrusion Prevention System\n")
+
+for packet in traffic:
+
+    ip = packet["ip"]
+    data = packet["data"]
+
+    print("Source IP:", ip)
+    print("Traffic:", data)
+
+    if ip in whitelist:
+        print("Action: Allowed (Trusted Source)")
+
+    elif data in signatures:
+        print("Action: BLOCKED - Malicious Traffic Detected")
+
+    else:
+        print("Action: Allowed - Normal Traffic")
+
+    print()
