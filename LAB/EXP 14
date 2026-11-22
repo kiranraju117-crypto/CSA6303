@@ -1,0 +1,23 @@
+Normalized Events:
+[
+    {
+        "source": "Firewall",
+        "source_ip": "192.168.1.10",
+        "event_type": "Failed Login"
+    },
+    {
+        "source": "Server",
+        "source_ip": "192.168.1.10",
+        "event_type": "Failed Login"
+    },
+    {
+        "source": "IDS",
+        "source_ip": "192.168.1.10",
+        "event_type": "Suspicious Activity"
+    }
+]
+
+Security Alerts:
+ALERT: Multiple failed logins detected!
+Source IP: 192.168.1.10
+Failed Attempts: 2
