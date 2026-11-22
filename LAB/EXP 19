@@ -1,0 +1,26 @@
+events = [
+    {"user": "admin", "status": "Failed", "ip": "192.168.1.1"},
+    {"user": "john", "status": "Success", "ip": "192.168.1.2"},
+    {"user": "admin", "status": "Failed", "ip": "192.168.1.3"},
+    {"user": "admin", "status": "Success", "ip": "192.168.1.4"},
+    {"user": "john", "status": "Failed", "ip": "192.168.1.5"}
+]
+
+# Search filter
+print("Search Results:")
+
+for event in events:
+    if event["status"] == "Failed":
+        print(event)
+
+# Stats count by user
+print("\nStats Count by User:")
+
+counts = {}
+
+for event in events:
+    user = event["user"]
+    counts[user] = counts.get(user, 0) + 1
+
+for user, count in counts.items():
+    print(user, "=", count)
