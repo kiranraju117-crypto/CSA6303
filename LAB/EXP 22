@@ -1,0 +1,38 @@
+logs = [
+    "admin Failed",
+    "admin Failed",
+    "admin Failed",
+    "admin Success",
+    "john Success",
+    "john Failed"
+]
+
+username = input("Enter username to check: ")
+
+failed_count = 0
+brute_force = False
+
+for log in logs:
+
+    user, status = log.split()
+
+    if user == username:
+
+        if status == "Failed":
+            failed_count += 1
+
+        elif status == "Success":
+
+            if failed_count >= 3:
+                brute_force = True
+
+            failed_count = 0
+
+if brute_force:
+    print("\nALERT: Possible Brute-Force Attack Detected!")
+    print("Username:", username)
+    print("Failed Attempts:", 3)
+    print("Successful Login: Yes")
+
+else:
+    print("\nNo Brute-Force Pattern Detected.")
