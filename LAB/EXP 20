@@ -1,0 +1,45 @@
+def classify_threat(description):
+
+    keywords = {
+        "Phishing": [
+            "fake email", "fraudulent link",
+            "steal password", "phishing"
+        ],
+
+        "DoS/DDoS": [
+            "flooding", "traffic overload",
+            "server unavailable", "ddos", "dos"
+        ],
+
+        "Malware": [
+            "virus", "ransomware", "trojan",
+            "malicious software", "malware"
+        ],
+
+        "Man-in-the-Middle": [
+            "intercept", "eavesdropping",
+            "communication", "middle attack",
+            "man-in-the-middle"
+        ]
+    }
+
+    description = description.lower()
+
+    scores = {}
+
+    for category, words in keywords.items():
+        scores[category] = sum(
+            word in description for word in words
+        )
+
+    result = max(scores, key=scores.get)
+
+    if scores[result] == 0:
+        print("Threat Category: Unknown")
+    else:
+        print("Threat Category:", result)
+
+
+description = input("Enter network incident description: ")
+
+classify_threat(description)
