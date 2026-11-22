@@ -1,0 +1,38 @@
+import hashlib
+import os
+
+# Sample database of known malicious hashes
+malicious_hashes = {
+    "5d41402abc4b2a76b9719d911017c592"
+}
+
+def calculate_hash(filename):
+
+    sha256 = hashlib.sha256()
+
+    with open(filename, "rb") as file:
+        for block in iter(lambda: file.read(4096), b""):
+            sha256.update(block)
+
+    return sha256.hexdigest()
+
+
+# Create a sample file for demonstration
+with open("sample.txt", "w") as file:
+    file.write("hello")
+
+filename = input("Enter file name: ")
+
+if os.path.exists(filename):
+
+    file_hash = calculate_hash(filename)
+
+    print("SHA-256 Hash:", file_hash)
+
+    if file_hash in malicious_hashes:
+        print("Result: Malicious File Detected!")
+    else:
+        print("Result: No Match Found")
+
+else:
+    print("File not found!")
