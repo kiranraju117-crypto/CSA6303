@@ -1,0 +1,44 @@
+def classify_control(description):
+
+    description = description.lower()
+
+    domains = {
+        "Organizational Controls": [
+            "policy", "risk management", "supplier",
+            "governance", "compliance"
+        ],
+
+        "People Controls": [
+            "employee", "training", "awareness",
+            "background check", "staff"
+        ],
+
+        "Physical Controls": [
+            "door", "cctv", "building",
+            "biometric entry", "security guard"
+        ],
+
+        "Technological Controls": [
+            "firewall", "encryption", "antivirus",
+            "access control", "network", "backup"
+        ]
+    }
+
+    scores = {}
+
+    for domain, keywords in domains.items():
+        scores[domain] = sum(
+            word in description for word in keywords
+        )
+
+    result = max(scores, key=scores.get)
+
+    if scores[result] == 0:
+        print("Control Domain: Not Identified")
+    else:
+        print("Control Domain:", result)
+
+
+control = input("Enter security control description: ")
+
+classify_control(control)
