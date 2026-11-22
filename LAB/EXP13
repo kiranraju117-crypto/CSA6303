@@ -1,0 +1,22 @@
+def assess_threat_intelligence():
+    data = input("Enter collected security data: ")
+    context = input("Enter context of the data: ")
+    confidence = int(input("Enter confidence level (0-100): "))
+    action = input("Enter recommended action: ")
+
+    if context.strip() and confidence >= 70 and action.strip():
+        print("\nResult: Genuine Threat Intelligence")
+        print("Context:", context)
+        print("Confidence:", confidence, "%")
+        print("Actionability:", action)
+    elif context.strip() and confidence >= 40:
+        print("\nResult: Partially Processed Intelligence")
+        print("More validation is required.")
+    else:
+        print("\nResult: Raw Security Data")
+        print("Further analysis is required.")
+
+    print("Collected Data:", data)
+
+
+assess_threat_intelligence()
