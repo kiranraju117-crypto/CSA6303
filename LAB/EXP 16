@@ -1,0 +1,29 @@
+import random
+
+layers = {
+    "Firewall": 0.80,
+    "IDS": 0.70,
+    "Antivirus": 0.85,
+    "Authentication": 0.90,
+    "Encryption": 0.75
+}
+
+print("Defense-in-Depth Simulation\n")
+
+attack_blocked = False
+
+for layer, protection in layers.items():
+
+    result = random.random()
+
+    if result < protection:
+        print(layer, ": Attack Blocked")
+        attack_blocked = True
+        break
+    else:
+        print(layer, ": Attack Passed")
+
+if attack_blocked:
+    print("\nResult: System Protected")
+else:
+    print("\nResult: Attack Reached the System")
