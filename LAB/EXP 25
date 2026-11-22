@@ -1,0 +1,85 @@
+import hashlib
+import json
+
+def calculate_hash(record):
+
+    data = json.dumps(record, sort_keys=True)
+
+    return hashlib.sha256(data.encode()).hexdigest()
+
+
+records = [
+    {
+        "id": 1,
+        "evidence": "Server Log",
+        "timestamp": 1000,
+        "previous_hash": "GENESIS"
+    },
+    {
+        "id": 2,
+        "evidence": "Disk Image",
+        "timestamp": 1100,
+        "previous_hash": ""
+    },
+    {
+        "id": 3,
+        "evidence": "Memory Image",
+        "timestamp": 1200,
+        "previous_hash": ""
+    }
+]
+
+# Generate hash chain
+previous_hash = "GENESIS"
+
+for record in records:
+
+    record["previous_hash"] = previous_hash
+
+    record["hash"] = calculate_hash({
+        "id": record["id"],
+        "evidence": record["evidence"],
+        "timestamp": record["timestamp"],
+        "previous_hash": record["previous_hash"]
+    })
+
+    previous_hash = record["hash"]
+
+
+# Verification
+print("Chain of Custody Verification\n")
+
+valid = True
+previous_hash = "GENESIS"
+previous_time = 0
+
+for record in records:
+
+    expected_hash = calculate_hash({
+        "id": record["id"],
+        "evidence": record["evidence"],
+        "timestamp": record["timestamp"],
+        "previous_hash": record["previous_hash"]
+    })
+
+    hash_valid = (
+        record["previous_hash"] == previous_hash
+        and record["hash"] == expected_hash
+    )
+
+    time_valid = record["timestamp"] >= previous_time
+
+    if hash_valid and time_valid:
+        print("Evidence", record["id"], ": VALID")
+    else:
+        print("Evidence", record["id"], ": INVALID")
+        valid = False
+
+    previous_hash = record["hash"]
+    previous_time = record["timestamp"]
+
+
+if valid:
+    print("\nResult: Chain of Custody Verified")
+else:
+    print("\nResult: Chain of Custody Verification Failed")
