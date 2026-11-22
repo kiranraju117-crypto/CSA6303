@@ -1,0 +1,40 @@
+# Minimum security requirements
+baseline = {
+    "Password Length": 12,
+    "MFA": 1,
+    "Firewall": 1,
+    "Antivirus": 1,
+    "Backup Frequency": 7
+}
+
+# Current security configuration
+current = {
+    "Password Length": 8,
+    "MFA": 1,
+    "Firewall": 1,
+    "Antivirus": 0,
+    "Backup Frequency": 15
+}
+
+print("Security Baseline Assessment\n")
+
+failed = []
+
+for control, required in baseline.items():
+
+    actual = current[control]
+
+    if actual >= required:
+        print(control, ": PASS")
+
+    else:
+        print(control, ": FAIL")
+        failed.append(control)
+
+print("\nFailed Security Controls:")
+
+if failed:
+    for control in failed:
+        print("-", control)
+else:
+    print("All controls meet the baseline.")
