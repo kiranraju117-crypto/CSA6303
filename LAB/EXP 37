@@ -1,0 +1,28 @@
+
+import time
+
+# Normal login baseline
+baseline = 3
+
+# Simulated login events
+login_events = [
+    ("user1", 1),
+    ("user2", 2),
+    ("user3", 7),
+    ("user4", 1)
+]
+
+print("--- Continuous Security Monitoring ---")
+
+for user, attempts in login_events:
+    print("\nMonitoring User:", user)
+    print("Login Attempts:", attempts)
+
+    if attempts > baseline:
+        print("ALERT: Abnormal login activity detected!")
+    else:
+        print("Normal login activity.")
+
+    time.sleep(1)
+
+print("\nMonitoring Completed.")
