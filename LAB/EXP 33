@@ -1,0 +1,22 @@
+
+description = input("Enter incident response action: ").lower()
+
+phases = {
+    "Preparation": ["training", "backup", "policy", "planning"],
+    "Identification": ["detect", "monitor", "identify", "alert"],
+    "Containment": ["isolate", "block", "disconnect", "restrict"],
+    "Eradication": ["remove", "delete", "malware", "clean"],
+    "Recovery": ["restore", "recover", "restart", "backup"],
+    "Lessons Learned": ["review", "report", "improve", "analyze"]
+}
+
+found = False
+
+for phase, keywords in phases.items():
+    if any(word in description for word in keywords):
+        print("Incident Response Phase:", phase)
+        found = True
+        break
+
+if not found:
+    print("Phase not identified.")
