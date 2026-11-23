@@ -1,0 +1,27 @@
+
+print("--- Security Incident Containment ---")
+
+incident = input(
+    "Enter incident type "
+    "(Malware/Phishing/DoS/Data Breach): "
+).lower()
+
+if incident == "malware":
+    print("Strategy: Isolate the infected system.")
+    print("Disconnect it from the network.")
+
+elif incident == "phishing":
+    print("Strategy: Block malicious email addresses.")
+    print("Reset affected user passwords.")
+
+elif incident == "dos":
+    print("Strategy: Apply firewall filtering.")
+    print("Block suspicious IP addresses.")
+
+elif incident == "data breach":
+    print("Strategy: Restrict unauthorized access.")
+    print("Disable compromised accounts.")
+
+else:
+    print("Unknown incident type.")
+    print("Perform further security investigation.")
