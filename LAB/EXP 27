@@ -1,0 +1,23 @@
+
+# Signature-Based IDS
+
+signatures = {
+    ("TCP", 80): "SELECT * FROM",
+    ("TCP", 443): "malicious_payload",
+    ("UDP", 53): "suspicious_query"
+}
+
+protocol = input("Enter protocol: ").upper()
+port = int(input("Enter port: "))
+content = input("Enter packet content: ")
+
+print("\n--- IDS Analysis ---")
+
+key = (protocol, port)
+
+if key in signatures and signatures[key] in content:
+    print("ALERT: Suspicious activity detected!")
+    print("Matched Signature:", signatures[key])
+else:
+    print("No threat detected.")
+    print("Traffic is normal.")
