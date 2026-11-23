@@ -1,0 +1,33 @@
+
+# Sample security dataset
+logs = [
+    {"ip": "192.168.1.10", "failed": 2, "country": "India"},
+    {"ip": "10.0.0.5", "failed": 12, "country": "Unknown"},
+    {"ip": "192.168.1.20", "failed": 3, "country": "India"},
+    {"ip": "10.0.0.8", "failed": 15, "country": "Unknown"}
+]
+
+# Threat intelligence indicators
+threat_ips = ["10.0.0.5", "10.0.0.8"]
+
+print("--- Threat Hunting ---")
+
+# 1. Hypothesis-Based Hunting
+print("\nHypothesis-Based Hunting:")
+for log in logs:
+    if log["failed"] > 10:
+        print("Suspicious Login:", log["ip"])
+
+# 2. Intelligence-Based Hunting
+print("\nIntelligence-Based Hunting:")
+for log in logs:
+    if log["ip"] in threat_ips:
+        print("Threat IP Found:", log["ip"])
+
+# 3. Analytics-Based Hunting
+print("\nAnalytics-Based Hunting:")
+average = sum(x["failed"] for x in logs) / len(logs)
+
+for log in logs:
+    if log["failed"] > average:
+        print("Abnormal Activity:", log["ip"])
