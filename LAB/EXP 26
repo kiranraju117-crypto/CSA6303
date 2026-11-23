@@ -1,0 +1,45 @@
+
+import hashlib
+
+# Static Analysis
+file_name = input("Enter file name: ")
+
+try:
+    with open(file_name, "rb") as f:
+        data = f.read()
+
+    file_hash = hashlib.sha256(data).hexdigest()
+    print("\n--- Static Analysis ---")
+    print("SHA256 Hash:", file_hash)
+
+    suspicious_apis = [
+        "CreateRemoteThread",
+        "VirtualAlloc",
+        "WriteProcessMemory",
+        "WinExec"
+    ]
+
+    content = data.decode(errors="ignore")
+
+    for api in suspicious_apis:
+        if api in content:
+            print("Suspicious API Found:", api)
+
+    # Dynamic Analysis (Simulated Log)
+    print("\n--- Dynamic Analysis ---")
+
+    logs = [
+        "File created",
+        "Registry modified",
+        "Network connection established",
+        "System file deleted"
+    ]
+
+    for log in logs:
+        print("Behavior:", log)
+
+    if "Network connection established" in logs:
+        print("Alert: Suspicious network activity detected!")
+
+except FileNotFoundError:
+    print("File not found!")
