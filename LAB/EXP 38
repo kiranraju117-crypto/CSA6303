@@ -1,0 +1,24 @@
+
+print("--- Security Risk Assessment ---")
+
+likelihood = int(input("Enter likelihood (1-5): "))
+impact = int(input("Enter impact (1-5): "))
+
+if not (1 <= likelihood <= 5 and 1 <= impact <= 5):
+    print("Invalid rating! Enter values from 1 to 5.")
+
+else:
+    risk_score = likelihood * impact
+
+    print("Risk Score:", risk_score)
+
+    if risk_score <= 4:
+        level = "Low"
+    elif risk_score <= 9:
+        level = "Medium"
+    elif risk_score <= 16:
+        level = "High"
+    else:
+        level = "Critical"
+
+    print("Risk Level:", level)
