@@ -1,0 +1,27 @@
+
+rules = [
+    ("ALLOW", "TCP", 80),
+    ("DENY", "TCP", 80),
+    ("ALLOW", "UDP", 53)
+]
+
+def firewall(protocol, port):
+    for action, rule_protocol, rule_port in rules:
+        if protocol == rule_protocol and port == rule_port:
+            return action
+
+    return "DENY"
+
+print("--- Firewall Rule Engine ---")
+
+protocol = input("Enter protocol: ").upper()
+port = int(input("Enter port: "))
+
+result = firewall(protocol, port)
+
+print("Firewall Decision:", result)
+
+if result == "ALLOW":
+    print("Packet Accepted")
+else:
+    print("Packet Blocked")
