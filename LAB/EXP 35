@@ -1,0 +1,30 @@
+
+# Required permissions for each role
+roles = {
+    "Admin": {"read", "write", "delete"},
+    "Employee": {"read"},
+    "Manager": {"read", "write"}
+}
+
+# User accounts and assigned permissions
+users = {
+    "Ravi": ("Employee", {"read", "write"}),
+    "Kiran": ("Manager", {"read", "write"}),
+    "Arun": ("Admin", {"read", "write", "delete"})
+}
+
+print("--- Least Privilege Audit ---")
+
+for user, details in users.items():
+    role, permissions = details
+
+    excess = permissions - roles[role]
+
+    print("\nUser:", user)
+    print("Role:", role)
+
+    if excess:
+        print("Excess Permissions:", excess)
+        print("Alert: Unauthorized extra access!")
+    else:
+        print("Permissions are appropriate.")
