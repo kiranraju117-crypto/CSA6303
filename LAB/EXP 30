@@ -1,0 +1,45 @@
+
+# Firewall Log
+firewall_log = {
+    "ip": "192.168.1.50",
+    "blocked_attempts": 10
+}
+
+# Windows Log
+windows_log = {
+    "ip": "192.168.1.50",
+    "failed_logins": 8,
+    "successful_login": True
+}
+
+# VPN Log
+vpn_log = {
+    "ip": "192.168.1.50",
+    "vpn_login": True
+}
+
+print("--- SIEM Log Correlation ---")
+
+print("Firewall Blocked Attempts:",
+      firewall_log["blocked_attempts"])
+
+print("Windows Failed Logins:",
+      windows_log["failed_logins"])
+
+print("VPN Login Status:",
+      vpn_log["vpn_login"])
+
+# Correlating all three logs
+if (firewall_log["ip"] == windows_log["ip"]
+    == vpn_log["ip"]
+    and firewall_log["blocked_attempts"] >= 5
+    and windows_log["failed_logins"] >= 5
+    and windows_log["successful_login"]
+    and vpn_log["vpn_login"]):
+
+    print("\nALERT: Possible Brute-Force Attack Detected!")
+    print("Suspicious IP Address:", firewall_log["ip"])
+    print("Action: Investigate and block suspicious access.")
+
+else:
+    print("\nNo correlated attack detected.")
