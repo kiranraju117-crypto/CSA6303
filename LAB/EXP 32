@@ -1,0 +1,23 @@
+
+properties = {
+    "Confidentiality": False,
+    "Integrity": True,
+    "Availability": False
+}
+
+print("--- CIA Security Analysis ---")
+
+violations = []
+
+for principle, status in properties.items():
+    print(principle, ":", status)
+
+    if status == False:
+        violations.append(principle)
+
+if violations:
+    print("\nViolated CIA Principles:")
+    for item in violations:
+        print(item)
+else:
+    print("\nNo CIA violations detected.")
